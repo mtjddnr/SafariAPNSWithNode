@@ -29,6 +29,4 @@ Step 2. Building the Push Package
  * `authenticationToken` : User Identifer
  * `webServiceURL` : URL of this https server
  
-```
 See https://github.com/mtjddnr/SafariAPNSWithNode/blob/master/node_package_maker.js
-```
