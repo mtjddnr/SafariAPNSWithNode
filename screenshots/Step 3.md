@@ -12,4 +12,4 @@
   * Logging Errors
      1. When Error accrues, Safari will send report to your Endpoint server
      
-See https://github.com/mtjddnr/SafariAPNSWithNode/blob/master/node_https_server.js
+See [node_https_server.js](https://github.com/mtjddnr/SafariAPNSWithNode/blob/master/node_https_server.js)
