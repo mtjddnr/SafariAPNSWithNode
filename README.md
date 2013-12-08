@@ -1,4 +1,4 @@
-SafariAPNSWithNode
+Safari Apple Push Notification Service With Node
 ==================
 
-Safari Apple Push Notification Service With Node.js
+
