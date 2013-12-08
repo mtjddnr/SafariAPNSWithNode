@@ -29,4 +29,30 @@ Step 2. Building the Push Package
  * `authenticationToken` : User Identifer
  * `webServiceURL` : URL of this https server
  
+2. Prepare icon.iconset images
+ * icon_16x16.png
+ * icon_16x16@2x.png
+ * icon_32x32.png
+ * icon_32x32@2x.png
+ * icon_128x128.png
+ * icon_128x128@2x.png
+ 
+3. Prepare `manifest.json`
+ * SHA1 Hash value  of 6 image files and `website.json`
+ * Example
+ 
+ ```
+ {
+	"icon.iconset/icon_16x16.png": "7b14c04ea0a1504877f41638ca86dbd2d9f2ff64",
+	"icon.iconset/icon_16x16@2x.png": "c1cc15749c85424169d648b52f83efad11e636f6",
+	"icon.iconset/icon_32x32.png": "c1cc15749c85424169d648b52f83efad11e636f6",
+	"icon.iconset/icon_32x32@2x.png": "36254154c579dd1f24263629dba74786d6c8c2c5",
+	"icon.iconset/icon_128x128.png": "23a08355e2e4650ad8cd620e0ccc935d00bbddb3",
+	 "icon.iconset/icon_128x128@2x.png": "44d3a3597c346a62c3828bb53202658c638e484f",
+	 "website.json": "8bdc6fd9589c575606e95d3ce09f79f95965b8c0"
+ }
+ ```
+
+
 See https://github.com/mtjddnr/SafariAPNSWithNode/blob/master/node_package_maker.js
+This will build pushPackages.zip
