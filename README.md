@@ -19,3 +19,5 @@ Preparation
 <a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-2.-Building-the-Push-Package">Step 2. Building the Push Package</a>
 
 <a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-3.-Configuring-Your-Web-Service-Endpoints">Step 3. Configuring Your Web Service Endpoints</a>
+
+<a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-4.-Requesting-Permission">Step 4. Requesting Permission</a>

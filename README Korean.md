@@ -1,7 +1,7 @@
 Safari Apple Push Notification Service With Node
 ==================
 
-Documentation 
+필독 문서 
 * https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html
 
 준비물
@@ -13,4 +13,11 @@ Documentation
  * icon_32x32@2x.png
  * icon_128x128.png
  * icon_128x128@2x.png
- 
+  
+<a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-1.-Register-Website-Push-ID">Step 1. Register Website Push ID</a>
+
+<a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-2.-Building-the-Push-Package">Step 2. Building the Push Package</a>
+
+<a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-3.-Configuring-Your-Web-Service-Endpoints">Step 3. Configuring Your Web Service Endpoints</a>
+
+<a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-4.-Requesting-Permission">Step 4. Requesting Permission</a>
