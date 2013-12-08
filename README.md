@@ -30,12 +30,12 @@ Step 2. Building the Push Package
  * `webServiceURL` : URL of this https server
  
 2. Prepare icon.iconset images
- * icon_16x16.png
- * icon_16x16@2x.png
- * icon_32x32.png
- * icon_32x32@2x.png
- * icon_128x128.png
- * icon_128x128@2x.png
+ * `icon_16x16.png` : 16 x 16 pixels
+ * `icon_16x16@2x.png` : 32 x 32 pixels
+ * `icon_32x32.png` : 32 x 32 pixels
+ * `icon_32x32@2x.png` : 64 x 64 pixels
+ * `icon_128x128.png` : 128 x 128 pixels
+ * `icon_128x128@2x.png` : 256 x 256 pixels
  
 3. Prepare `manifest.json`
  * SHA1 Hash value  of 6 image files and `website.json`
@@ -48,10 +48,30 @@ Step 2. Building the Push Package
 	"icon.iconset/icon_32x32.png": "c1cc15749c85424169d648b52f83efad11e636f6",
 	"icon.iconset/icon_32x32@2x.png": "36254154c579dd1f24263629dba74786d6c8c2c5",
 	"icon.iconset/icon_128x128.png": "23a08355e2e4650ad8cd620e0ccc935d00bbddb3",
-	 "icon.iconset/icon_128x128@2x.png": "44d3a3597c346a62c3828bb53202658c638e484f",
-	 "website.json": "8bdc6fd9589c575606e95d3ce09f79f95965b8c0"
+	"icon.iconset/icon_128x128@2x.png": "44d3a3597c346a62c3828bb53202658c638e484f",
+	"website.json": "8bdc6fd9589c575606e95d3ce09f79f95965b8c0"
  }
  ```
+
+4. Build `signature` file
+ * signature of `manifest.json` using PKCS #7 Sign
+
+5. Compress the folder into a ZIP archive
+ * package/
+     * icon.iconset/
+         *  `icon_16x16.png`
+         * `icon_16x16@2x.png`
+         * `icon_32x32.png`
+         * `icon_32x32@2x.png`
+         * `icon_128x128.png`
+         * `icon_128x128@2x.png`
+     * `website.json`
+     * `manifest.json`
+     * `signature`
+     
+ Content of zip should be
+ ![2 5 1](https://f.cloud.github.com/assets/581101/1701202/c2109a38-6047-11e3-82e5-d0cf05522875.png)
+
 
 
 See https://github.com/mtjddnr/SafariAPNSWithNode/blob/master/node_package_maker.js
