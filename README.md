@@ -14,9 +14,7 @@ Preparation
  * icon_128x128.png
  * icon_128x128@2x.png
  
-Step 1. Register Website Push ID
-* Wiki Page: https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-1.-Register-Website-Push-ID
+Step 1. Register Website Push ID <a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-1.-Register-Website-Push-ID">[Link]</a>
 
-Step 2. Building the Push Package
-* https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html#//apple_ref/doc/uid/TP40013225-CH3-SW7
-* Wiki Page: https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-2.-Building-the-Push-Package
+Step 2. Building the Push Package <a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-2.-Building-the-Push-Package">[Link]</a>
+
