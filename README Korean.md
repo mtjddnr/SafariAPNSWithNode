@@ -4,9 +4,9 @@ Safari Apple Push Notification Service With Node
 Documentation 
 * https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html
 
-Preparation
-* Website Push ID Certificate
-* Icon Image files
+준비물
+* Website Push ID 인증서
+* 아이콘 이미지
  * icon_16x16.png
  * icon_16x16@2x.png
  * icon_32x32.png
