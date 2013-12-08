@@ -1,15 +1,17 @@
 var https = require('https');
 var fs = require('fs');
 var qs = require('querystring');
+var redis = require("redis");
 
 var options = { 
-	key:    fs.readFileSync('private.key'),
-	cert:   fs.readFileSync('certificate.crt'),
-	ca:     fs.readFileSync('ComodoUTNSGCCA.crt'),
+	key:    fs.readFileSync('https_private.key'),
+	cert:   fs.readFileSync('https_certificate.crt'),
+	ca:     fs.readFileSync('https_ComodoUTNSGCCA.crt'),
 	requestCert:        true,
 	rejectUnauthorized: false
 };
-https.createServer(options, callBack).listen(8000);
+https.createServer(options, callBack).listen(443);
+var redisClient = redis.createClient(6379, 'localhost');
 
 function callBack(req, res) {  
 	var commands = req.url.split("/");
@@ -56,7 +58,6 @@ function callBack(req, res) {
 			res.end();
 		});
 		return;	
-		break;
 	}
 		
 	/* https://host/v1/devices/[deviceToken]/registrations/[websitePushID] */
@@ -66,6 +67,17 @@ function callBack(req, res) {
 		
 		if (req.method == 'POST') {
 			//add device into database
+							  	
+			  	var data = {
+					tokens: [ deviceToken ],
+					title: "Title",
+					message: "Hello world",
+					action: "View",
+					"url-args": [""]
+				};
+				
+				redisClient.publish("push", JSON.stringify(data));
+				
 		} else if (req.method == 'DELETE') {
 			//delete device info from database
 		}

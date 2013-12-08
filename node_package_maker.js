@@ -1,6 +1,7 @@
 var fs = require('fs');
 var crypto = require('crypto');
 var execSync = require("exec-sync");
+var rimraf = require('rimraf');
     
 /////////////////////////////////////////////
 
@@ -104,6 +105,9 @@ archive.finalize(function(err, bytes) {
 	}
 	
 	console.log(bytes + ' total bytes');
+	
+	fs.unlink("cert.pem");
+	fs.unlink("private.pem");
+	rimraf.sync(path);
 });
-
 
