@@ -4,10 +4,10 @@ var qs = require('querystring');
 
 var options = { 
 	key:    fs.readFileSync('private.key'),
-    cert:   fs.readFileSync('certificate.crt'),
-    ca:     fs.readFileSync('ComodoUTNSGCCA.crt'),
-    requestCert:        true,
-    rejectUnauthorized: false
+	cert:   fs.readFileSync('certificate.crt'),
+	ca:     fs.readFileSync('ComodoUTNSGCCA.crt'),
+	requestCert:        true,
+	rejectUnauthorized: false
 };
 https.createServer(options, callBack).listen(8000);
 
@@ -45,16 +45,16 @@ function callBack(req, res) {
 	if (code == "log") {
 		console.log(req.headers);
 		var body = '';
-        req.on('data', function (data) {
-            body += data;
-        });
-        req.on('end', function () {
-            var POST = qs.parse(body);
-            console.log(POST);
+		req.on('data', function (data) {
+			body += data;
+		});
+		req.on('end', function () {
+			var POST = qs.parse(body);
+			console.log(POST);
 
 			res.writeHead(200);
 			res.end();
-        });
+		});
 		return;	
 		break;
 	}
