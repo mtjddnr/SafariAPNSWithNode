@@ -5,7 +5,7 @@ Documentation
 * https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html
 
 준비물
-* Website Push ID 인증서
+* 애플 개발자 계정
 * 아이콘 이미지
  * icon_16x16.png
  * icon_16x16@2x.png
