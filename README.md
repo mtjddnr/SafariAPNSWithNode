@@ -14,8 +14,8 @@ Preparation
  * icon_128x128.png
  * icon_128x128@2x.png
  
-Step 1. Register Website Push ID <a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-1.-Register-Website-Push-ID">[Link]</a>
+<a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-1.-Register-Website-Push-ID">Step 1. Register Website Push ID</a>
 
-Step 2. Building the Push Package <a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-2.-Building-the-Push-Package">[Link]</a>
+<a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-2.-Building-the-Push-Package">Step 2. Building the Push Package</a>
 
-Step 3. Configuring Your Web Service Endpoints
+<a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-3.-Configuring-Your-Web-Service-Endpoints">Step 3. Configuring Your Web Service Endpoints</a>
