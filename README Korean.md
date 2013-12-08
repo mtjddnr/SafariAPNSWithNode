@@ -6,6 +6,7 @@ Safari Apple Push Notification Service With Node
 
 준비물
 * 애플 개발자 계정
+* [AppleWWDRCA.cer](https://developer.apple.com/certificationauthority/AppleWWDRCA.cer)
 * 아이콘 이미지
  
 [Step 1. Push ID 등록 및 인증서 생성하기](https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-1.-Push-ID-%EB%93%B1%EB%A1%9D-%EB%B0%8F-%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0)

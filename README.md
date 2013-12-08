@@ -7,6 +7,7 @@ Documentation
 
 Preparation
 * Apple Developer Account
+* [AppleWWDRCA.cer](https://developer.apple.com/certificationauthority/AppleWWDRCA.cer)
 * Icon Image files
  
 [Step 1. Register Website Push ID](https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-1.-Register-Website-Push-ID)
