@@ -18,3 +18,4 @@ Step 1. Register Website Push ID <a href="https://github.com/mtjddnr/SafariAPNSW
 
 Step 2. Building the Push Package <a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Step-2.-Building-the-Push-Package">[Link]</a>
 
+Step 3. Configuring Your Web Service Endpoints
