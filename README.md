@@ -1,6 +1,6 @@
 Safari Apple Push Notification Service With Node
 ==================
-[한국어[Korean]](https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Home-Korean)
+[한국어[Korean]](https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Home-%ED%95%9C%EA%B5%AD%EC%96%B4%5BKorean%5D)
 
 Documentation 
 * [Notification Programming Guide for Websites](https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html)
