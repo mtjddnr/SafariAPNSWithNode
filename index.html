@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Safari Apple Push Notification Service With Node.js by mtjddnr</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Safari Apple Push Notification Service With Node.js</h1>
+        <h2>Safari APNS Node.js</h2>
+        <a href="https://github.com/mtjddnr/SafariAPNSWithNode" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="safari-apple-push-notification-service-with-node" class="anchor" href="#safari-apple-push-notification-service-with-node"><span class="octicon octicon-link"></span></a>Safari Apple Push Notification Service With Node</h1>
+
+<p><a href="https://github.com/mtjddnr/SafariAPNSWithNode/wiki/Home-Korean">한국어[Korean]</a></p>
+
+<p>Documentation </p>
+
+<ul>
+<li><a href="https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html">Notification Programming Guide for Websites</a></li>
+</ul><p>Preparation</p>
+
+<ul>
+<li>Apple Developer Account</li>
+<li><a href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer">AppleWWDRCA.cer</a></li>
+<li>Icon Image files</li>
+</ul><h2>
+<a name="step-1-register-website-push-id" class="anchor" href="#step-1-register-website-push-id"><span class="octicon octicon-link"></span></a>Step 1. Register Website Push ID</h2>
+
+<ol>
+<li><p>Visit <a href="https://developer.apple.com/devcenter/ios/index.action">https://developer.apple.com/devcenter/ios/index.action</a> or <a href="https://developer.apple.com/devcenter/mac/index.action">https://developer.apple.com/devcenter/mac/index.action</a></p></li>
+<li><p>Certificates, Identifiers &amp; Profiles Page</p></li>
+<li>
+<p>Website Push IDs</p>
+
+<p><img src="https://f.cloud.github.com/assets/581101/1700968/d16dbbdc-6038-11e3-89e9-85bc83a2e763.png" alt="1 1"></p>
+</li>
+<li><p>Add
+Identifier must start with "web."
+<img src="https://f.cloud.github.com/assets/581101/1700977/4b9bddee-6039-11e3-9fd2-794611bc3422.png" alt="1 4"><img src="https://f.cloud.github.com/assets/581101/1701007/615b7e76-603b-11e3-92c6-f30ff39bf96d.png" alt="1 4 2"><img src="https://f.cloud.github.com/assets/581101/1701006/615ae038-603b-11e3-9017-12c57dc36b8a.png" alt="1 4 3"><img src="https://f.cloud.github.com/assets/581101/1701008/615c2524-603b-11e3-975e-42a3c9255efe.png" alt="1 4 4"></p></li>
+<li><p>Prepare certSigningRequest file
+Open Keychain.app
+<img src="https://f.cloud.github.com/assets/581101/1701029/d90956cc-603c-11e3-8410-7ebef208be13.png" alt="1 5 1"><img src="https://f.cloud.github.com/assets/581101/1701030/d90989da-603c-11e3-9716-d5037b8f0990.png" alt="1 5 2"></p></li>
+<li><p>Upload certSigningRequest file.
+Select and Edit
+<img src="https://f.cloud.github.com/assets/581101/1701032/d90b0b52-603c-11e3-9772-39bac58f30f4.png" alt="1 6 1"><img src="https://f.cloud.github.com/assets/581101/1701031/d90aeadc-603c-11e3-85ac-6bf37c72127f.png" alt="1 6 2"><img src="https://f.cloud.github.com/assets/581101/1701033/d90b5b5c-603c-11e3-8ec6-abeecc7dd952.png" alt="1 6 3"><img src="https://f.cloud.github.com/assets/581101/1701034/d90d9c3c-603c-11e3-9200-0d39aa7676bc.png" alt="1 6 4"></p></li>
+<li><p>Download Certificate
+<img src="https://f.cloud.github.com/assets/581101/1701040/1507fd90-603d-11e3-807b-50548ce34c77.png" alt="1 7 1"></p></li>
+<li><p>Add downloaded certificate file to Keychain.app and Export Certificate and Private Key (.p12)
+<img src="https://f.cloud.github.com/assets/581101/1701066/364fbda2-603e-11e3-8ee1-c45ddb15ed4c.png" alt="1 8 1"></p></li>
+</ol><p>This Exported Personal Information Exchange (.p12) file will be used for Apple Push Server SSL connection</p>
+
+<h2>
+<a name="step-2-building-the-push-package" class="anchor" href="#step-2-building-the-push-package"><span class="octicon octicon-link"></span></a>Step 2. Building the Push Package</h2>
+
+<ol>
+<li>
+<p>Prepare Information for the <code>website.json</code></p>
+
+<ul>
+<li>
+<code>websiteName</code> : Name which will show on Notification
+<img src="https://f.cloud.github.com/assets/581101/1701108/3c667304-6041-11e3-9453-591a2aa4cb81.png" alt="2 1 1">
+</li>
+<li>
+<code>websitePushID</code> : Push Id you created in Step 1. </li>
+<li>
+<code>allowedDomains</code> : Website domains (ex: <a href="http://apple.com">http://apple.com</a>, <a href="http://www.apple.com">http://www.apple.com</a> User may enter the site with two different subdomains)</li>
+<li>
+<code>urlFormatString</code> : URL to Safari when user clicks Notification. This is used as [NSString stringWithFormat:@"http://host/?id=%@&amp;code=%@", ...</li>
+<li>
+<code>authenticationToken</code> : User Identifer</li>
+<li>
+<code>webServiceURL</code> : URL of this https server</li>
+<li>
+<p>Example</p>
+
+<pre><code>{
+"websiteName":"Back to the Mac",
+"websitePushID":"web.com.tistory.macnews",
+"allowedDomains":[
+"http://macnews.tistory.com"
+],
+"urlFormatString":"http://macnews.tistory.com/%@",
+"authenticationToken":"51c799bcbf18289ee31ff2cbfe4afcd53f71f909",
+"webServiceURL":"https://mini.smoon.kr"
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Prepare icon.iconset images</p>
+
+<ul>
+<li>
+<code>icon_16x16.png</code> : 16 x 16 pixels</li>
+<li>
+<code>icon_16x16@2x.png</code> : 32 x 32 pixels</li>
+<li>
+<code>icon_32x32.png</code> : 32 x 32 pixels</li>
+<li>
+<code>icon_32x32@2x.png</code> : 64 x 64 pixels</li>
+<li>
+<code>icon_128x128.png</code> : 128 x 128 pixels</li>
+<li>
+<code>icon_128x128@2x.png</code> : 256 x 256 pixels</li>
+</ul>
+</li>
+<li>
+<p>Prepare <code>manifest.json</code></p>
+
+<ul>
+<li>SHA1 Hash value  of 6 image files and <code>website.json</code>
+</li>
+<li>
+<p>Example</p>
+
+<pre><code>{
+"icon.iconset/icon_16x16.png": "7b14c04ea0a1504877f41638ca86dbd2d9f2ff64",
+"icon.iconset/icon_16x16@2x.png": "c1cc15749c85424169d648b52f83efad11e636f6",
+"icon.iconset/icon_32x32.png": "c1cc15749c85424169d648b52f83efad11e636f6",
+"icon.iconset/icon_32x32@2x.png": "36254154c579dd1f24263629dba74786d6c8c2c5",
+"icon.iconset/icon_128x128.png": "23a08355e2e4650ad8cd620e0ccc935d00bbddb3",
+"icon.iconset/icon_128x128@2x.png": "44d3a3597c346a62c3828bb53202658c638e484f",
+"website.json": "8bdc6fd9589c575606e95d3ce09f79f95965b8c0"
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Build <code>signature</code> file</p>
+
+<ul>
+<li>signature of <code>manifest.json</code> using PKCS #7 Sign</li>
+</ul>
+</li>
+<li>
+<p>Compress the folder into a ZIP archive</p>
+
+<ul>
+<li>package/
+
+<ul>
+<li>icon.iconset/
+
+<ul>
+<li> <code>icon_16x16.png</code>
+</li>
+<li><code>icon_16x16@2x.png</code></li>
+<li><code>icon_32x32.png</code></li>
+<li><code>icon_32x32@2x.png</code></li>
+<li><code>icon_128x128.png</code></li>
+<li><code>icon_128x128@2x.png</code></li>
+</ul>
+</li>
+<li><code>website.json</code></li>
+<li><code>manifest.json</code></li>
+<li><code>signature</code></li>
+</ul>
+</li>
+</ul>
+<p>Content of zip should be
+<img src="https://f.cloud.github.com/assets/581101/1701202/c2109a38-6047-11e3-82e5-d0cf05522875.png" alt="2 5 1"></p>
+</li>
+</ol><p>See <a href="https://github.com/mtjddnr/SafariAPNSWithNode/blob/master/node_package_maker.js">node_package_maker.js</a></p>
+
+<p>This will build pushPackages.zip</p>
+
+<h2>
+<a name="step-3-configuring-your-web-service-endpoints" class="anchor" href="#step-3-configuring-your-web-service-endpoints"><span class="octicon octicon-link"></span></a>Step 3. Configuring Your Web Service Endpoints</h2>
+
+<ul>
+<li>Endpoint server is not necessary to be the same web server (ex. <a href="http://www.site.com">http://www.site.com</a> for the website, <a href="https://push.site.com">https://push.site.com</a> for the endpoint server)</li>
+<li>Endpoint server must use HTTPS and Self Signed Certificate is not acceptable.(so you have to use free certificate site like <a href="https://www.startssl.com/">https://www.startssl.com/</a> or buy one)</li>
+<li>Safari(user side) will connect your Endpoint server when
+
+<ul>
+<li>Ask a Package: 
+
+<ol>
+<li>Safari will download your package (which is built in Step 3)</li>
+<li>Validate information with <code>website.json</code>
+</li>
+<li>If validation is successful, Requesting permission dialog will show up. Otherwise, it will ignore on User's screen and report message to your Endpoint server.</li>
+</ol>
+</li>
+<li>Register Device or remove device
+
+<ol>
+<li>When user accepts requesting permission, Safari will send device token and other information to your Endpoint server.</li>
+<li>If it is registering, the method will be <code>POST</code>
+</li>
+<li>If it is unregistering, the method will be <code>DELETE</code>
+</li>
+</ol>
+</li>
+<li>Logging Errors
+
+<ol>
+<li>When Error accrues, Safari will send report to your Endpoint server</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul><p>See <a href="https://github.com/mtjddnr/SafariAPNSWithNode/blob/master/node_https_server.js">node_https_server.js</a></p>
+
+<h2>
+<a name="step-4-requesting-permission" class="anchor" href="#step-4-requesting-permission"><span class="octicon octicon-link"></span></a>Step 4. Requesting Permission</h2>
+
+<ul>
+<li>
+<p>Javascript</p>
+
+<pre><code>window.safari.pushNotification.requestPermission(url, websitePushID, userInfo, callback);
+</code></pre>
+</li>
+<li>
+<code>url</code>: Address of Endpoint server (ex. <code>https://push.host.com</code>)</li>
+<li>
+<code>websitePushID</code>: Push ID created in Step 1.</li>
+<li>
+<code>userInfo</code>: Any user information to send to Endpoint Server.</li>
+<li>
+<code>callback</code>: return function</li>
+</ul><p>Example</p>
+
+<pre><code>document.body.onload = function() {
+    // Ensure that the user can receive Safari Push Notifications.
+    if ('safari' in window &amp;&amp; 'pushNotification' in window.safari) {
+        var permissionData = window.safari.pushNotification.permission('web.com.example.domain');
+        checkRemotePermission(permissionData);
+    }
+};
+
+var checkRemotePermission = function (permissionData) {
+    if (permissionData.permission === 'default') {
+        // This is a new web service URL and its validity is unknown.
+        window.safari.pushNotification.requestPermission(
+            'https://domain.example.com', // The web service URL.
+            'web.com.example.domain',     // The Website Push ID.
+            {}, // Data that you choose to send to your server to help you identify the user.
+            checkRemotePermission         // The callback function.
+        );
+    }
+    else if (permissionData.permission === 'denied') {
+        // The user said no.
+    }
+    else if (permissionData.permission === 'granted') {
+        // The web service URL is a valid push provider, and the user said yes.
+        // permissionData.deviceToken is now available to use.
+    }
+};
+</code></pre>
+
+<h2>
+<a name="step-5-push-notification" class="anchor" href="#step-5-push-notification"><span class="octicon octicon-link"></span></a>Step 5. Push Notification</h2>
+
+<ul>
+<li>Same as iOS APNS (Great, we can use node-apn <a href="https://github.com/argon/node-apn">https://github.com/argon/node-apn</a>)</li>
+<li>Same rules as iOS APNS (Same length limit: maximum 256 bytes)</li>
+<li>Do not connect to development environment server (only gateway.push.apple.com works)</li>
+<li>New keys: <code>action</code>, <code>url-args</code>
+</li>
+<li>
+<p>Example</p>
+
+<pre><code>{
+"aps": {
+    "alert": {
+        "title": "Flight A998 Now Boarding",
+        "body": "Boarding has begun for Flight A998.",
+        "action": "View"
+    },
+    "url-args": ["boarding", "A998"]
+}
+}
+
+</code></pre>
+</li>
+<li>
+<p><code>url-args</code>: This is where your <code>urlFormatString</code> will be used to.</p>
+
+<p>If urlFormatString is "<a href="http://www.host.com/?id=%@&amp;code=%@">http://www.host.com/?id=%@&amp;code=%@</a>" and user clicks notification with upper example, Safari will navigate user to "<a href="http://www.host.com/?id=bording&amp;code=A998">http://www.host.com/?id=bording&amp;code=A998</a>"</p>
+
+<ul>
+<li>
+<p>Watch out data type in <code>url-args</code>.</p>
+
+<p>if you use <code>Integer</code> value in <code>url-args</code> and <code>%@</code> in urlFormatString, JSON will looks like
+<code>"url-args": [ 1234 ]</code> and notification will not work.</p>
+</li>
+<li>
+<p>Watch out number of arguments.</p>
+
+<p>If you use two <code>%@</code> then you have to use two strings in <code>url-args</code></p>
+</li>
+</ul>
+</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/mtjddnr/SafariAPNSWithNode/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/mtjddnr/SafariAPNSWithNode/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/mtjddnr/SafariAPNSWithNode"></a> is maintained by <a href="https://github.com/mtjddnr">mtjddnr</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
